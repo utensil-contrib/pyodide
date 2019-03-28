@@ -42,7 +42,7 @@ RUN printf '#!/bin/sh\nXvfb :99 -screen 0 1280x1024x24 &\nexec "$@"\n' > /tmp/en
         && sudo mv /tmp/entrypoint /docker-entrypoint.sh
 # build pyodide
 WORKDIR /src
-RUN cd /src && make
+RUN cd /src && make || sleep 600
 
 # ensure that the build agent doesn't override the entrypoint
 LABEL com.circleci.preserve-entrypoint=true
