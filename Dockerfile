@@ -1,4 +1,6 @@
-FROM circleci/python:3.7.0-stretch
+FROM gitpod/workspace-full
+
+USER root
 
 # We need at least g++-8, but stretch comes with g++-6
 # Set up the Debian testing repo, and then install g++ from there...
