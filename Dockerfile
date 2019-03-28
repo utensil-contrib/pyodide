@@ -41,9 +41,8 @@ RUN printf '#!/bin/sh\nXvfb :99 -screen 0 1280x1024x24 &\nexec "$@"\n' > /tmp/en
   && chmod +x /tmp/entrypoint \
         && sudo mv /tmp/entrypoint /docker-entrypoint.sh
 # build pyodide
-RUN sudo apt-get install git
-WORKDIR ~
-RUN git clone https://github.com/utensil-contrib/pyodide.git || sleep 600
+WORKDIR $HOME
+RUN git clone https://github.com/iodide-project/pyodide.git || sleep 600
 RUN cd pyodide && make || sleep 600
 
 # ensure that the build agent doesn't override the entrypoint
