@@ -41,8 +41,8 @@ RUN printf '#!/bin/sh\nXvfb :99 -screen 0 1280x1024x24 &\nexec "$@"\n' > /tmp/en
   && chmod +x /tmp/entrypoint \
         && sudo mv /tmp/entrypoint /docker-entrypoint.sh
 # build pyodide
-WORKDIR /src
-RUN ls -lhta && make -f Makefile || sleep 600
+RUN git clone https://github.com/utensil-contrib/pyodide.git
+RUN cd pyodide && make || sleep 600
 
 # ensure that the build agent doesn't override the entrypoint
 LABEL com.circleci.preserve-entrypoint=true
